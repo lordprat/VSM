@@ -8,6 +8,5 @@ public class VsmApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VsmApplication.class, args);
-		System.out.println("Welcome");
 	}
 }
