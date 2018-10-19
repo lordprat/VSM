@@ -1,29 +1,54 @@
 package com.prod.persistence;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.google.gson.Gson;
+import com.mongodb.client.*;
 import org.bson.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MongoOperations {
 
     private static final String DB_NAME = "vsm";
     private static MongoDatabase mongoDatabase;
-    public MongoCollection getCollection(String collectionName) {
-        getDatabase();
-        return mongoDatabase.getCollection(collectionName);
+    private Gson gson;
+
+    public MongoOperations()
+    {
+        gson = new Gson();
     }
 
-    public static MongoDatabase getDatabase() {
+    private static void getDatabase() {
         if (mongoDatabase == null) {
             MongoClient mongoClient = MongoConnectivity.getInstance().getMongoClient();
             mongoDatabase = mongoClient.getDatabase(DB_NAME);
         }
-        return mongoDatabase;
     }
 
+    private MongoCollection getCollection(String collectionName) {
+        getDatabase();
+        return mongoDatabase.getCollection(collectionName);
+    }
+
+
     public <T> void storeDocument(T data, String collectionName) {
-        MongoOperations mongoOperations = new MongoOperations();
-        mongoOperations.getCollection(collectionName).insertOne(data);
+        String json = gson.toJson(data);
+        getCollection(collectionName).insertOne(Document.parse(json));
+    }
+
+    public <T> List<T> getAllDocuments(List<T> documentList, Class<T> clazz, String collectionName)
+    {
+        MongoCursor<Document> cursor =  getCollection(collectionName).find().iterator();
+        try {
+            while (cursor.hasNext()) {
+                String json = cursor.next().toJson();
+                T document = gson.fromJson(json, clazz);
+                documentList.add(document);
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return documentList;
     }
 }
