@@ -4,6 +4,17 @@ import java.util.Date;
 
 public class Facility {
 
+    public String orgName;
+    public String scope;
+    public String departmentName;
+    public String facilityId;
+    public String scheduledStart;
+    public String scheduledEnd;
+    public int daysPerWeek;
+    public int minutesAvailable;
+    public String comments;
+
+
     public String getFacilityId() {
         return facilityId;
     }
@@ -12,19 +23,19 @@ public class Facility {
         this.facilityId = facilityId;
     }
 
-    public Date getScheduledStart() {
+    public String getScheduledStart() {
         return scheduledStart;
     }
 
-    public void setScheduledStart(Date scheduledStart) {
+    public void setScheduledStart(String scheduledStart) {
         this.scheduledStart = scheduledStart;
     }
 
-    public Date getScheduledEnd() {
+    public String getScheduledEnd() {
         return scheduledEnd;
     }
 
-    public void setScheduledEnd(Date scheduledEnd) {
+    public void setScheduledEnd(String scheduledEnd) {
         this.scheduledEnd = scheduledEnd;
     }
 
@@ -61,13 +72,23 @@ public class Facility {
         this.departmentName = departmentName;
     }
 
-    public String departmentName;
-    public String facilityId;
-    public Date scheduledStart;
-    public Date scheduledEnd;
-    public int daysPerWeek;
-    public int minutesAvailable;
-    public String comments;
+
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
 
 }

@@ -1,5 +1,7 @@
 package com.prod.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class OrgDepartment {
     public String outOfScopeSupplier;
     public String outOfScopeCustomer;
     public int utilizationRate;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="MM-dd-yyyy")
     public Date dateUpdated;
 
     public Date getDateUpdated() {

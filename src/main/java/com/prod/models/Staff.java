@@ -4,16 +4,35 @@ import java.util.Date;
 
 public class Staff {
 
+    public String orgName;
+    public String scope;
     public String departmentName;
     public String empId;
-    public Date scheduledStart;
-    public Date scheduledEnd;
+    public String scheduledStart;
+    public String scheduledEnd;
     public int lunchMinutes;
     public int breakMinutes;
     public int additionalMinutes;
     public int onsiteMinutes;
     public float fullTimeStatus;
     public String comments;
+
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
     public String getDepartmentName() {
         return departmentName;
@@ -31,19 +50,19 @@ public class Staff {
         this.empId = empId;
     }
 
-    public Date getScheduledStart() {
+    public String getScheduledStart() {
         return scheduledStart;
     }
 
-    public void setScheduledStart(Date scheduledStart) {
+    public void setScheduledStart(String scheduledStart) {
         this.scheduledStart = scheduledStart;
     }
 
-    public Date getScheduledEnd() {
+    public String getScheduledEnd() {
         return scheduledEnd;
     }
 
-    public void setScheduledEnd(Date scheduledEnd) {
+    public void setScheduledEnd(String scheduledEnd) {
         this.scheduledEnd = scheduledEnd;
     }
 
