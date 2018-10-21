@@ -51,24 +51,6 @@ public class DataController {
 
     }
 
-    /*@RequestMapping(method = RequestMethod.GET, value = "/org")
-    public ResponseEntity<List<OrgScope>> getOrgById(@RequestParam(value = "id") String id, @RequestParam(value="scope") String scope)
-    {
-        if(id == null || scope == null)
-        {
-            //Exception
-            return ResponseEntity.notFound().build();
-        }
-
-        Bson query = Filters.and(Filters.eq("orgName", id), Filters.eq("scope", scope));
-
-        MongoOperations operations = new MongoOperations();
-        List<OrgScope> orgList = operations.getDocumentById(query, OrgScope.class, CollectionNames.ORG_SCOPE_COLLECTION.toString());
-        return ResponseEntity.ok(orgList);
-        //Get from mongo db by id
-
-    }*/
-
 
     @RequestMapping(method = RequestMethod.GET, value = "/orgs")
     public ResponseEntity<List<OrgScope>> getAllOrgs()
