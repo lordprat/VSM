@@ -2,10 +2,12 @@ package com.prod.persistence;
 
 import com.google.gson.Gson;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MongoOperations {
 
@@ -35,6 +37,15 @@ public class MongoOperations {
         String json = gson.toJson(data);
         getCollection(collectionName).insertOne(Document.parse(json));
     }
+
+
+    public <T> T getDocumentById(Map<String, String> filterIds)
+    {
+        return null;
+    }
+
+
+
 
     public <T> List<T> getAllDocuments(List<T> documentList, Class<T> clazz, String collectionName)
     {

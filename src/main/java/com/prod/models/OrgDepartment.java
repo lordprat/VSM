@@ -1,5 +1,6 @@
 package com.prod.models;
 
+import java.util.Date;
 import java.util.List;
 
 public class OrgDepartment {
@@ -8,6 +9,42 @@ public class OrgDepartment {
     public String scope;
     public List<Department> departments;
     public String assumptions;
+    public String outOfScopeSupplier;
+    public String outOfScopeCustomer;
+    public int utilizationRate;
+    public Date dateUpdated;
+
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
+
+    public String getOutOfScopeSupplier() {
+        return outOfScopeSupplier;
+    }
+
+    public void setOutOfScopeSupplier(String outOfScopeSupplier) {
+        this.outOfScopeSupplier = outOfScopeSupplier;
+    }
+
+    public String getOutOfScopeCustomer() {
+        return outOfScopeCustomer;
+    }
+
+    public void setOutOfScopeCustomer(String outOfScopeCustomer) {
+        this.outOfScopeCustomer = outOfScopeCustomer;
+    }
+
+    public int getUtilizationRate() {
+        return utilizationRate;
+    }
+
+    public void setUtilizationRate(int utilizationRate) {
+        this.utilizationRate = utilizationRate;
+    }
 
     public String getAssumptions() {
         return assumptions;
