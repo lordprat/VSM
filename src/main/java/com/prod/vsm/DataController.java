@@ -1,15 +1,15 @@
 package com.prod.vsm;
 
+import com.mongodb.client.model.Filters;
 import com.prod.models.OrgDepartment;
 import com.prod.models.OrgScope;
 import com.prod.persistence.CollectionNames;
 import com.prod.persistence.MongoOperations;
+import org.bson.conversions.Bson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class DataController {
@@ -40,7 +40,7 @@ public class DataController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/org")
-    public ResponseEntity<OrgScope> getOrgById(@RequestParam(value = "id") String id)
+    public ResponseEntity<List<OrgScope>> getOrgById(@RequestParam(value = "id") String id)
     {
         if(id == null)
         {
@@ -48,10 +48,32 @@ public class DataController {
             return ResponseEntity.notFound().build();
         }
 
+        Bson query = Filters.eq("orgName", id);
+
+        MongoOperations operations = new MongoOperations();
+        List<OrgScope> orgList = operations.getDocumentById(query, OrgScope.class, CollectionNames.ORG_SCOPE_COLLECTION.toString());
+        return ResponseEntity.ok(orgList);
         //Get from mongo db by id
 
-        return null;
     }
+
+    /*@RequestMapping(method = RequestMethod.GET, value = "/org")
+    public ResponseEntity<List<OrgScope>> getOrgById(@RequestParam(value = "id") String id, @RequestParam(value="scope") String scope)
+    {
+        if(id == null || scope == null)
+        {
+            //Exception
+            return ResponseEntity.notFound().build();
+        }
+
+        Bson query = Filters.and(Filters.eq("orgName", id), Filters.eq("scope", scope));
+
+        MongoOperations operations = new MongoOperations();
+        List<OrgScope> orgList = operations.getDocumentById(query, OrgScope.class, CollectionNames.ORG_SCOPE_COLLECTION.toString());
+        return ResponseEntity.ok(orgList);
+        //Get from mongo db by id
+
+    }*/
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/orgs")
@@ -67,7 +89,7 @@ public class DataController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/department")
-    public ResponseEntity<OrgDepartment> getOrgDepartmentById(@RequestParam(value = "org") String org, @RequestParam(value = "scope") String scope)
+    public ResponseEntity<List<OrgDepartment>> getOrgDepartmentsById(@RequestParam(value = "org") String org, @RequestParam(value = "scope") String scope)
     {
         //Call mongodb to save OrgDepartment
         if(org == null || scope == null)
@@ -75,7 +97,11 @@ public class DataController {
             return ResponseEntity.notFound().build();
         }
 
-        return null;
+        Bson query = Filters.and(Filters.eq("orgName", org), Filters.eq("scope", scope));
+
+        MongoOperations operations = new MongoOperations();
+        List<OrgDepartment> orgList = operations.getDocumentById(query, OrgDepartment.class, CollectionNames.ORG_DEPARTMENT_COLLECTION.toString());
+        return ResponseEntity.ok(orgList);
     }
 
 
