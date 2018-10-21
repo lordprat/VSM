@@ -16,7 +16,15 @@ public class Staff {
     public int onsiteMinutes;
     public float fullTimeStatus;
     public String comments;
+    public int totalOnsiteMinutes;
 
+    public int getTotalOnsiteMinutes() {
+        return totalOnsiteMinutes;
+    }
+
+    public void setTotalOnsiteMinutes(int totalOnsiteMinutes) {
+        this.totalOnsiteMinutes = totalOnsiteMinutes;
+    }
 
     public String getOrgName() {
         return orgName;

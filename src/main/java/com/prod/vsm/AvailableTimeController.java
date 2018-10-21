@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.prod.utils.Constants.DAYS_PER_WEEK;
+
 @RestController
 public class AvailableTimeController {
 
@@ -23,6 +25,7 @@ public class AvailableTimeController {
                 payload.getScheduledStart(), payload.getScheduledEnd(), payload.getBreakMinutes(),
                 payload.getLunchMinutes(), payload.getAdditionalMinutes()
         ));
+        payload.setTotalOnsiteMinutes(payload.getOnsiteMinutes()*(int)(DAYS_PER_WEEK*payload.getFullTimeStatus()));
         operations.storeDocument(payload, CollectionNames.AVAILABLE_TIME_STAFF_COLLECTION.toString());
     }
 

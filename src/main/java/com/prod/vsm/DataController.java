@@ -15,12 +15,6 @@ import java.util.List;
 public class DataController {
 
 
-    @RequestMapping (method = RequestMethod.GET, value = "/")
-    public String ping () {
-        return "Webapp is running";
-    }
-
-
     @RequestMapping(method = RequestMethod.POST, value = "/org")
     public void saveOrg(@RequestBody OrgScope payload)
     {
