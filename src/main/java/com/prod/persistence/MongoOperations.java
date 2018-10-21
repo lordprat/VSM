@@ -1,23 +1,24 @@
 package com.prod.persistence;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MongoOperations {
 
     private static final String DB_NAME = "vsm";
     private static MongoDatabase mongoDatabase;
-    private Gson gson;
+    private ObjectMapper mapper;
 
     public MongoOperations()
     {
-        gson = new Gson();
+        mapper = new ObjectMapper();
     }
 
     private static void getDatabase() {
@@ -34,14 +35,35 @@ public class MongoOperations {
 
 
     public <T> void storeDocument(T data, String collectionName) {
-        String json = gson.toJson(data);
+
+        String json = "";
+        try {
+            json = mapper.writeValueAsString(data);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         getCollection(collectionName).insertOne(Document.parse(json));
     }
 
 
-    public <T> T getDocumentById(Map<String, String> filterIds)
+    public <T> List<T> getDocumentById(Bson query, Class<T> clazz, String collectionName)
     {
-        return null;
+        List<T> resultList = new ArrayList<T>();
+        if (query != null) {
+            MongoCursor<Document> cursor = getCollection(collectionName).find(query).projection(Projections.excludeId()).iterator();
+            try {
+                while (cursor.hasNext()) {
+                    String json = cursor.next().toJson();
+                    T document = mapper.readValue(json, clazz);
+                    resultList.add(document);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                cursor.close();
+            }
+        }
+        return resultList;
     }
 
 
@@ -49,13 +71,15 @@ public class MongoOperations {
 
     public <T> List<T> getAllDocuments(List<T> documentList, Class<T> clazz, String collectionName)
     {
-        MongoCursor<Document> cursor =  getCollection(collectionName).find().iterator();
+        MongoCursor<Document> cursor =  getCollection(collectionName).find().projection(Projections.excludeId()).iterator();
         try {
             while (cursor.hasNext()) {
                 String json = cursor.next().toJson();
-                T document = gson.fromJson(json, clazz);
+                T document = mapper.readValue(json, clazz);
                 documentList.add(document);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             cursor.close();
         }

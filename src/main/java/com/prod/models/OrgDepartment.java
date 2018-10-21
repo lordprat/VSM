@@ -14,7 +14,7 @@ public class OrgDepartment {
     public String outOfScopeSupplier;
     public String outOfScopeCustomer;
     public int utilizationRate;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="MM-dd-yyyy")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="MMM dd, yyyy, HH:mm:ss a")
     public Date dateUpdated;
 
     public Date getDateUpdated() {
