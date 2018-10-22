@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.prod.utils.Constants.API_PREFIX;
 import static com.prod.utils.Constants.DAYS_PER_WEEK;
 
 @RestController
 public class AvailableTimeController {
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/availableTimeStaff")
+    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/availableTimeStaff")
     public void saveAvailableTimeStaff(@RequestBody Staff payload)
     {
         //Call mongodb to save OrgScope
@@ -30,7 +31,7 @@ public class AvailableTimeController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/availableTimeFacility")
+    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/availableTimeFacility")
     public void saveAvailableTimeFacility(@RequestBody Facility payload)
     {
         //Call mongodb to save OrgScope
