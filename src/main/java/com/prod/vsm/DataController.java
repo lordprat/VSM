@@ -14,6 +14,7 @@ import java.util.*;
 import static com.prod.utils.Constants.API_PREFIX;
 
 @RestController
+@CrossOrigin
 public class DataController {
 
 

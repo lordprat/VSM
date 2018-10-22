@@ -5,15 +5,13 @@ import com.prod.models.Staff;
 import com.prod.persistence.CollectionNames;
 import com.prod.persistence.MongoOperations;
 import com.prod.utils.AvailableTimeDiffUtil;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.prod.utils.Constants.API_PREFIX;
 import static com.prod.utils.Constants.DAYS_PER_WEEK;
 
 @RestController
+@CrossOrigin
 public class AvailableTimeController {
 
 
