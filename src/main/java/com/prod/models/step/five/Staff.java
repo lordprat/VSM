@@ -1,4 +1,4 @@
-package com.prod.models;
+package com.prod.models.step.five;
 
 import java.util.Date;
 

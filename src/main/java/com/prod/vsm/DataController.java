@@ -1,8 +1,8 @@
 package com.prod.vsm;
 
 import com.mongodb.client.model.Filters;
-import com.prod.models.OrgDepartment;
-import com.prod.models.OrgScope;
+import com.prod.models.step.one.OrgDepartment;
+import com.prod.models.step.one.OrgScope;
 import com.prod.persistence.CollectionNames;
 import com.prod.persistence.MongoOperations;
 import org.bson.conversions.Bson;

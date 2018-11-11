@@ -1,7 +1,7 @@
 package com.prod.vsm;
 
-import com.prod.models.Facility;
-import com.prod.models.Staff;
+import com.prod.models.step.six.Facility;
+import com.prod.models.step.five.Staff;
 import com.prod.persistence.CollectionNames;
 import com.prod.persistence.MongoOperations;
 import com.prod.utils.AvailableTimeDiffUtil;
