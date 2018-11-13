@@ -19,7 +19,7 @@ import static com.prod.utils.Constants.API_PREFIX;
 public class DataController {
 
 
-    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/org")
+    @RequestMapping(method = RequestMethod.POST, value = "/org")
     public void saveOrg(@RequestBody OrgScope payload)
     {
         //Call mongodb to save OrgScope
@@ -28,7 +28,7 @@ public class DataController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/department")
+    @RequestMapping(method = RequestMethod.POST, value = "/department")
     public void saveOrgDepartment(@RequestBody OrgDepartment payload)
     {
         //Call mongodb to save OrgDepartment
@@ -37,7 +37,7 @@ public class DataController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX+"/org")
+    @RequestMapping(method = RequestMethod.GET, value = "/org")
     public ResponseEntity<List<OrgScope>> getOrgById(@RequestParam(value = "id") String id)
     {
         if(id == null)
@@ -56,7 +56,7 @@ public class DataController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX+"/orgs")
+    @RequestMapping(method = RequestMethod.GET, value = "/orgs")
     public ResponseEntity<List<OrgScope>> getAllOrgs()
     {
         List<OrgScope> orgList = new LinkedList<>();
@@ -68,7 +68,7 @@ public class DataController {
 
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX+"/department")
+    @RequestMapping(method = RequestMethod.GET, value = "/department")
     public ResponseEntity<List<OrgDepartment>> getOrgDepartmentsById(@RequestParam(value = "org") String org, @RequestParam(value = "scope") String scope)
     {
         //Call mongodb to save OrgDepartment
@@ -85,7 +85,7 @@ public class DataController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX+"/departments")
+    @RequestMapping(method = RequestMethod.GET, value = "/departments")
     public ResponseEntity<List<OrgDepartment>> getAllDepartments()
     {
         List<OrgDepartment> departmentList = new LinkedList<>();

@@ -22,7 +22,7 @@ import static com.prod.utils.Constants.DAYS_PER_WEEK;
 public class AvailableTimeController {
 
 
-    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/availableTimeStaff")
+    @RequestMapping(method = RequestMethod.POST, value = "/availableTimeStaff")
     public void saveAvailableTimeStaff(@RequestBody Staff payload)
     {
         //Call mongodb to save OrgScope
@@ -36,7 +36,7 @@ public class AvailableTimeController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/availableTimeFacility")
+    @RequestMapping(method = RequestMethod.POST, value = "/availableTimeFacility")
     public void saveAvailableTimeFacility(@RequestBody Facility payload)
     {
         //Call mongodb to save OrgScope
@@ -47,7 +47,7 @@ public class AvailableTimeController {
 
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX + "/availableTimeFacility")
+    @RequestMapping(method = RequestMethod.GET, value = "/availableTimeFacility")
     public ResponseEntity<List<Facility>> getAvailableTimeFacility(@RequestParam(value = "orgName") String orgName, @RequestParam(value = "deptName") String deptName)
     {
         if(orgName == null || deptName == null)
@@ -64,7 +64,7 @@ public class AvailableTimeController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX + "/availableTimeStaff")
+    @RequestMapping(method = RequestMethod.GET, value = "/availableTimeStaff")
     public ResponseEntity<List<Staff>> getAvailableTimeStaff(@RequestParam(value = "orgName") String orgName, @RequestParam(value = "deptName") String deptName)
     {
         if(orgName == null || deptName == null)
