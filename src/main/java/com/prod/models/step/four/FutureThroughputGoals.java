@@ -6,6 +6,15 @@ public class FutureThroughputGoals {
     public String commnets;
     public boolean isComplete;
 
+    public String scope;
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
     public String orgName;
 

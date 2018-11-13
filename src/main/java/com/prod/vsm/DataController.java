@@ -15,6 +15,7 @@ import static com.prod.utils.Constants.API_PREFIX;
 
 @RestController
 @CrossOrigin
+@RequestMapping(API_PREFIX + "/step1")
 public class DataController {
 
 

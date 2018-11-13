@@ -18,6 +18,7 @@ import static com.prod.utils.Constants.DAYS_PER_WEEK;
 
 @RestController
 @CrossOrigin
+@RequestMapping(API_PREFIX + "/step5and6")
 public class AvailableTimeController {
 
 

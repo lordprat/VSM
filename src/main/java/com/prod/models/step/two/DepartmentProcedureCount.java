@@ -5,6 +5,15 @@ public class DepartmentProcedureCount {
 
     public String departmentName;
     public String orgName;
+    public String scope;
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
     public String getOrgName() {
         return orgName;

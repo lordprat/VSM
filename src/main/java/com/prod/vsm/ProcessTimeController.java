@@ -17,11 +17,12 @@ import static com.prod.utils.Constants.API_PREFIX;
 
 @RestController
 @CrossOrigin
+@RequestMapping(API_PREFIX + "/step7")
 public class ProcessTimeController {
 
 
 
-    @RequestMapping(method = RequestMethod.POST, value = API_PREFIX+"/process_time")
+    @RequestMapping(method = RequestMethod.POST, value = "/process_time")
     public void saveProcessTime(@RequestBody ProcessTime payload)
     {
         //Calculate and save auto-fields
@@ -34,16 +35,16 @@ public class ProcessTimeController {
 
 
 
-    @RequestMapping(method = RequestMethod.GET, value = API_PREFIX + "/process_time")
-    public ResponseEntity<List<ProcessTime>> getProcessTime(@RequestParam(value = "orgName") String orgName, @RequestParam(value = "deptName") String deptName)
+    @RequestMapping(method = RequestMethod.GET, value = "/process_time")
+    public ResponseEntity<List<ProcessTime>> getProcessTime(@RequestParam(value = "orgName") String orgName, @RequestParam(value = "scope") String scope, @RequestParam(value = "department") String department)
     {
-        if(orgName == null || deptName == null)
+        if(orgName == null || department == null || scope == null)
         {
             //Exception
             return ResponseEntity.notFound().build();
         }
 
-        Bson query = Filters.eq("orgName", orgName);
+        Bson query = Filters.and(Filters.eq("orgName", orgName), Filters.eq("scope", scope), Filters.eq("department", department));
 
         MongoOperations operations = new MongoOperations();
         List<ProcessTime> orgList = operations.getDocumentById(query, ProcessTime.class, CollectionNames.PROCESS_TIME_COLLECTION.toString());
